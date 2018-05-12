@@ -65,6 +65,11 @@ public class MineSweeperPane extends StackPane {
         setTranslateY(y * FIELD_SIZE);
     }
 
+    /**
+     * A mező tartalmának beállításáért felelős metódus.
+     *
+     * @param tx a mező kívánt tartalma.
+     */
     public void setTx(String tx) {
         this.tx.setText(tx);
     }

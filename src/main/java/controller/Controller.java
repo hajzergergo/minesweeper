@@ -30,8 +30,14 @@ import java.util.ResourceBundle;
  */
 public class Controller {
 
+    /**
+     * A {@link MineSweeperPane} mezőket tartalmazó játéktábla.
+     */
     private MineSweeperPane[][] mineSweeperPanes;
 
+    /**
+     * A játékost reprezentálő {@link Player}.
+     */
     private Player player;
 
 

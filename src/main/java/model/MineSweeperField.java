@@ -28,6 +28,9 @@ public class MineSweeperField {
      */
     private boolean revealed;
 
+    /**
+     * Létrehozza a játék egy mezőjét, az alapértelmezett értékekkel.
+     */
     public MineSweeperField() {
         text = '-';
         this.flagged = false;

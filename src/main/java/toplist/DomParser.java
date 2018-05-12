@@ -24,10 +24,25 @@ import java.util.stream.Collectors;
  */
 public class DomParser {
 
+    /**
+     * A {@link DocumentBuilder}-t létrehozó factory.
+     */
     private static DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+    /**
+     * A {@link Document}-t létrehozó Builder.
+     */
     private static DocumentBuilder db;
+    /**
+     * A gyökér elemet reprezentáló xml {@link Element}.
+     */
     private static Element root;
+    /**
+     * Az xml documentum.
+     */
     private static Document doc;
+    /**
+     * A kezelni kívánt fájl.
+     */
     private static File input;
 
     /**
