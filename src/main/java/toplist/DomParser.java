@@ -58,7 +58,8 @@ public class DomParser {
 
             db = dbf.newDocumentBuilder();
 
-            input = new File("topmine.xml");
+            //input = new File("topmine.xml");
+            input = new File( System.getProperty("user.home") + "/topmine.xml");
             if (input.exists()){
                 doc = db.parse(input);
             } else{
@@ -116,7 +117,8 @@ public class DomParser {
         List<Player> players = new ArrayList<>();
         try{
             db = dbf.newDocumentBuilder();
-            input = new File("topmine.xml");
+            //input = new File("topmine.xml");
+            input = new File( System.getProperty("user.home") + "/topmine.xml");
             doc = db.parse(input);
 
             Element e;
