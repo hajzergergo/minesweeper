@@ -7,6 +7,9 @@ import model.MineSweeper;
 
 import java.util.Scanner;
 
+/**
+ * Main osztály, a javafx applikáció elindítására.
+ */
 public class Main extends Application {
 
     @Override
@@ -21,6 +24,13 @@ public class Main extends Application {
     }
 
 
+    /**
+     * A program main metódusa.
+     *
+     * Egyetlen feladata, az applikáció elindítása.
+     *
+     * @param args parancssori argumentumok.
+     */
     public static void main(String[] args) {
         launch(args);
     }
