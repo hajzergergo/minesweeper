@@ -21,7 +21,10 @@ public class Player {
      * @param points A játékos pontszáma.
      */
     public Player(String username, int points) {
-        this.username = username;
+        if (username.equals(""))
+            this.username = System.getProperty("user.name");
+        else
+            this.username = username;
         this.points = points;
     }
 
