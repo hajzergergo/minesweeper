@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * A Minesweeper játékot reprezentáló osztály.
  */
 public class MineSweeper {
+
+    private static Logger logger = LoggerFactory.getLogger(MineSweeper.class);
 
     /**
      * Játék nehézsége.
@@ -93,6 +98,7 @@ public class MineSweeper {
      */
     public void flag(int x, int y){
         ((MineSweeperField)table[x][y]).flag();
+        logger.info("Player put a flag on (" + x + ":" + y + ") field");
     }
 
     /**
@@ -108,16 +114,22 @@ public class MineSweeper {
      * @param y A mező y koordinátája.
      */
     public void shoot(int x, int y) {
+        logger.info("Player shot on (" + x + ":" + y + ") field");
         int ypos = y;
         int xpos = x;
         if (!((MineSweeperField)table[xpos][ypos]).isFlagged() && !((MineSweeperField)table[xpos][ypos]).isRevealed())
         {
             Recursive(xpos, ypos);
-            isOver = ((MineSweeperField)table[xpos][ypos]).isMined();
+            if (((MineSweeperField)table[xpos][ypos]).isMined()){
+                isOver = true;
+                logger.info("Player LOST");
+            }
+
         }
         if (CountRemaining() <= getWidth()*getHeight()/minesCounterHelper)
         {
             win = true;
+            logger.info("Player WON");
         }
     }
 
@@ -147,6 +159,7 @@ public class MineSweeper {
         if (((MineSweeperField)table[xpos][ypos]).isMined()){
             mines--;
         }
+        logger.info("Counting near mines on (" + xpos + ":" + ypos + ") field");
         return mines;
     }
 
@@ -189,6 +202,7 @@ public class MineSweeper {
                 }
             }
         }
+        logger.info("Counting remaining mines");
         return remaining;
     }
 

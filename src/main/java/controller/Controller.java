@@ -15,6 +15,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.StopWatch;
 import toplist.DomParser;
 import toplist.Player;
@@ -29,6 +31,8 @@ import java.util.ResourceBundle;
  *  Controller osztály minden scene-hez.
  */
 public class Controller {
+
+    private static Logger logger = LoggerFactory.getLogger(Controller.class);
 
     /**
      * A {@link MineSweeperPane} mezőket tartalmazó játéktábla.
@@ -63,6 +67,7 @@ public class Controller {
      */
     @FXML
     private void handleStartMineSweeperBtn(ActionEvent e){
+        logger.info("Minesweeper button pressed");
         Stage stage = (Stage) label.getScene().getWindow();
         Parent root = null;
 
@@ -127,6 +132,7 @@ public class Controller {
         }
 
         stopWatch.start();
+        logger.info("Minesweeper content created");
         return root;
     }
 
@@ -136,6 +142,7 @@ public class Controller {
      * @param g MineSweeper
      */
     public void refreshMineSweeperContent(MineSweeper g){
+        logger.info("Refresh Minesweeper content");
         for (int x = 0; x < g.getHeight(); x++) {
             for (int y = 0; y < g.getWidth(); y++) {
 
@@ -177,6 +184,7 @@ public class Controller {
      * @param e Gomb lenyomás.
      */
     public void handleTopTen(ActionEvent e) {
+        logger.info("Top 10 button pressed");
         Stage stage = (Stage) label.getScene().getWindow();
 
         FXMLLoader fl = new FXMLLoader(getClass().getResource("/fxml/topten.fxml"));
@@ -205,6 +213,7 @@ public class Controller {
      *  @param e Gomb lenyomása.
      */
     public void handleMinesweeperGetBtn(ActionEvent e) {
+        logger.info("Get button pressed");
         minesweeperListV.setOpacity(1);
         minesweeperListV.setItems(FXCollections.observableArrayList(DomParser.readFromTopMindeSweeper()));
     }
@@ -215,6 +224,7 @@ public class Controller {
      * @param e Gomb lenyomása.
      */
     public void handleGoBackBtn(ActionEvent e) {
+        logger.info("Go back button pressed");
         goToMainScreen(false);
     }
 
@@ -238,7 +248,9 @@ public class Controller {
             stage.setTitle("Board Games");
             stage.setScene(scene);
             stage.show();
+            logger.info("Opened main screen");
         } catch (Exception e) {
+            logger.error("Error while opening main screen");
             e.printStackTrace();
         }
     }

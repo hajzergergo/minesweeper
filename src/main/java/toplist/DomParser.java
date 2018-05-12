@@ -2,6 +2,8 @@ package toplist;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -23,6 +25,8 @@ import java.util.stream.Collectors;
  * Eredmények mentéséért felelős osztáy.
  */
 public class DomParser {
+
+    private static Logger logger = LoggerFactory.getLogger(DomParser.class);
 
     /**
      * A {@link DocumentBuilder}-t létrehozó factory.
@@ -92,8 +96,11 @@ public class DomParser {
 
             t.transform(source,result);
 
+            logger.info("Writing player(" + p.getUsername() + ") to topmine.xml");
+
         } catch (Exception e){
             e.printStackTrace();
+            logger.error("Failed to write to topmine.xml");
         }
     }
 
@@ -120,8 +127,11 @@ public class DomParser {
                 players.add(new Player(e.getElementsByTagName("name").item(0).getTextContent(),Integer.parseInt(e.getElementsByTagName("score").item(0).getTextContent())));
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
+            logger.error("Failed to read from topmine.xml");
         }
+
+        logger.info("Reading players from topmine.xml");
         return players.stream().sorted((x,y) -> y.getPoints()-x.getPoints()).limit(10).collect(Collectors.toList());
     }
 
