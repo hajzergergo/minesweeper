@@ -12,9 +12,9 @@ public class MineSweeperTest {
     public void flag() {
         mineSweeper = new MineSweeper(10,10);
         mineSweeper.flag(1,1);
-        assertEquals(true,((MineSweeperField)mineSweeper.table[1][1]).isFlagged());
+        assertEquals(true, mineSweeper.table[1][1].isFlagged());
         mineSweeper.flag(1,1);
-        assertEquals(false,((MineSweeperField)mineSweeper.table[1][1]).isFlagged());
+        assertEquals(false, mineSweeper.table[1][1].isFlagged());
     }
 
     @Test
@@ -22,9 +22,9 @@ public class MineSweeperTest {
         mineSweeper = new MineSweeper(10,10);
         mineSweeper.shoot(5,5);
         if (mineSweeper.table[5][5].text != 'M'){
-            assertEquals(true,((MineSweeperField)mineSweeper.table[5][5]).isRevealed());
+            assertEquals(true, mineSweeper.table[5][5].isRevealed());
             mineSweeper.shoot(5,5);
-            assertEquals(true,((MineSweeperField)mineSweeper.table[5][5]).isRevealed());
+            assertEquals(true, mineSweeper.table[5][5].isRevealed());
         }else{
             assertEquals(true,mineSweeper.isOver());
         }
