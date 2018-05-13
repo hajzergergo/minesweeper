@@ -26,6 +26,9 @@ import java.util.stream.Collectors;
  */
 public class DomParser {
 
+    /**
+     * {@link DomParser} osztályhoz tartozó logger.
+     */
     private static Logger logger = LoggerFactory.getLogger(DomParser.class);
 
     /**

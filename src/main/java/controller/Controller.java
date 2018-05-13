@@ -32,6 +32,9 @@ import java.util.ResourceBundle;
  */
 public class Controller {
 
+    /**
+     * {@link Controller} osztályhoz tartozó logger.
+     */
     private static Logger logger = LoggerFactory.getLogger(Controller.class);
 
     /**

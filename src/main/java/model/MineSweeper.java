@@ -12,6 +12,9 @@ import org.slf4j.LoggerFactory;
  */
 public class MineSweeper {
 
+    /**
+     * {@link MineSweeper} osztályhoz tartozó logger.
+     */
     private static Logger logger = LoggerFactory.getLogger(MineSweeper.class);
 
     /**
