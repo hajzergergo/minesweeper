@@ -47,6 +47,8 @@ public class MineSweeper {
 
     /**
      * Létrehozza a Minesweeper játékot, adott oldalhosszúságokkal.
+     * Véletlenszerű helyekre aknákat helyez el, és kiszámolja az
+     * egyes mezők környezetében lévő aknák számát.
      *
      * @param width A játékmező szélessége.
      * @param height A játékmező magassága.
@@ -66,17 +68,17 @@ public class MineSweeper {
         {
             x = rn.nextInt(height);
             y = rn.nextInt(width);
-            if (!((MineSweeperField)table[x][y]).isMined())
+            if (!table[x][y].isMined())
             {
-                ((MineSweeperField)table[x][y]).setMined(true);
+                table[x][y].setMined(true);
                 mines--;
             }
         }
 
         for (int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
-                ((MineSweeperField)table[i][j]).setMinesNear(countMinesNear(i,j));
-                ((MineSweeperField)table[i][j]).setFieldText();
+                table[i][j].setMinesNear(countMinesNear(i,j));
+                table[i][j].setFieldText();
             }
         }
     }
@@ -105,12 +107,9 @@ public class MineSweeper {
     }
 
     /**
-     * Az x,y koordinátájú mezőre lead egy "lövést".
-     *
+     * Az x,y koordinátájú mezőre lead egy lövést.
      * Ha aknát talált a játéknak vége.
-     *
      * Ha minden olyan mező ami nem tartalmaz aknát felfedésre került, a játékos nyert.
-     *
      * Ha az x,y koordinátájú mező környezetében nincsenek aknák, akkor felfedi azokat.
      *
      * @param x A mező x koordinátája.
@@ -120,10 +119,10 @@ public class MineSweeper {
         logger.info("Player shot on (" + x + ":" + y + ") field");
         int ypos = y;
         int xpos = x;
-        if (!((MineSweeperField)table[xpos][ypos]).isFlagged() && !((MineSweeperField)table[xpos][ypos]).isRevealed())
+        if (!table[xpos][ypos].isFlagged() && !table[xpos][ypos].isRevealed())
         {
             Recursive(xpos, ypos);
-            if (((MineSweeperField)table[xpos][ypos]).isMined()){
+            if (table[xpos][ypos].isMined()){
                 isOver = true;
                 logger.info("Player LOST");
             }
@@ -154,12 +153,12 @@ public class MineSweeper {
         {
             for (int y = ymin; y <= ymax; y++)
             {
-                if (((MineSweeperField)table[x][y]).isMined()){
+                if (table[x][y].isMined()){
                     mines++;
                 }
             }
         }
-        if (((MineSweeperField)table[xpos][ypos]).isMined()){
+        if (table[xpos][ypos].isMined()){
             mines--;
         }
         logger.info("Counting near mines on (" + xpos + ":" + ypos + ") field");
@@ -176,11 +175,11 @@ public class MineSweeper {
     private void Recursive(int x, int y)
     {
         if (y >= 0 && y < getWidth() && x >= 0 && x < getHeight() && // valid coords AND
-                !((MineSweeperField)table[x][y]).isMined() && !((MineSweeperField)table[x][y]).isFlagged() && // not mine AND not flagged AND
-                !((MineSweeperField)table[x][y]).isRevealed()) // unknown AND
+                !table[x][y].isMined() && !table[x][y].isFlagged() && // not mine AND not flagged AND
+                !table[x][y].isRevealed()) // unknown AND
         {
-            ((MineSweeperField)table[x][y]).setRevealed(true);
-            if (((MineSweeperField)table[x][y]).getMinesNear() == 0) // 0 mines nearby
+            table[x][y].setRevealed(true);
+            if (table[x][y].getMinesNear() == 0) // 0 mines nearby
             {
                 Recursive(x, y - 1);
                 Recursive(x - 1, y);
@@ -191,7 +190,9 @@ public class MineSweeper {
     }
 
     /**
-     * @return A még nem felfedett mezők darabszámá.
+     * A még nem felfedett mezők darabszámát számláló metódus.
+     *
+     * @return A még nem felfedett mezők darabszáma.
      */
     private int CountRemaining()
     {
@@ -200,7 +201,7 @@ public class MineSweeper {
         {
             for (int y = 0; y < getWidth(); y++)
             {
-                if (!((MineSweeperField)table[x][y]).isRevealed()){
+                if (!table[x][y].isRevealed()){
                     remaining++;
                 }
             }

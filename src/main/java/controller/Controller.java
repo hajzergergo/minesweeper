@@ -63,10 +63,9 @@ public class Controller {
 
     /**
      * Elindítja a játékot a Minesweeper gomb lenyomására.
-     *
      * Létrehozza az új stage-et, ahol a játékos játszhatja a játékot.
      *
-     * @param e omb lenyomása.
+     * @param e Gomb lenyomása.
      */
     @FXML
     private void handleStartMineSweeperBtn(ActionEvent e){
@@ -85,7 +84,13 @@ public class Controller {
     }
 
     /**
-     * Létrehozza a játktáblát, és megadja a mezők viselkedését.
+     * Létrehozza a játéktáblát, és megadja a mezők viselkedését.
+     * Létrehoz továbbá egy felugró ablakot ({@link Alert}),
+     * melynek segítségével, tudatjuk a játékossal az elért eredményét.
+     * Eltárolja a játékos által megadott nevet, ha nem ad meg nevet, akkor a
+     * {@code System.getProperty("user.name")} értékét kapja meg.
+     * Létrehoz egy stoppert, ami a pontszám kiszámításában játszik szerepet.
+     * Ezek után minden egyes mezőhöz hozzárendeli a megfelelo viselkedéseket.
      *
      * @param g MineSweeper
      * @return pane
@@ -141,6 +146,8 @@ public class Controller {
 
     /**
      * A játéktábla mezőinek frissítéséért felelős.
+     * Minden mezőn végig megy és ha az fel van fedve a játékos számára,
+     * akkor beállítja annak megjelenítendő tartalmát, majd láthatóvá teszi azt.
      *
      * @param g MineSweeper
      */

@@ -15,7 +15,7 @@
     </scm>
 
     <name>minesweeper</name>
-    <description>It is a simple minesweeper game.</description>
+    <description>It is a simple minesweeper game. Player can shoot and flag on squares.</description>
 
     <inceptionYear>2018</inceptionYear>
 
@@ -50,7 +50,7 @@
         <profile>
             <id>log</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <dependencies>
                 <dependency>

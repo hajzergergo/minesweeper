@@ -54,6 +54,8 @@ public class DomParser {
 
     /**
      * Kiírja a paraméterül kapott játékos adatatit(név, pontszám) a topmine.xml-be.
+     * Ha még nem létezik ilyen nevű xml fájl, akkor létre is hozza azt.
+     *
      * @param p játékos.
      */
     public static void writeToTopMineSweeper(Player p){
@@ -61,8 +63,8 @@ public class DomParser {
 
             db = dbf.newDocumentBuilder();
 
-            //input = new File("topmine.xml");
-            input = new File( System.getProperty("user.home") + "/topmine.xml");
+            input = new File("topmine.xml");
+            //input = new File( System.getProperty("user.home") + "/topmine.xml");
             if (input.exists()){
                 doc = db.parse(input);
             } else{
@@ -120,8 +122,8 @@ public class DomParser {
         List<Player> players = new ArrayList<>();
         try{
             db = dbf.newDocumentBuilder();
-            //input = new File("topmine.xml");
-            input = new File( System.getProperty("user.home") + "/topmine.xml");
+            input = new File("topmine.xml");
+            //input = new File( System.getProperty("user.home") + "/topmine.xml");
             doc = db.parse(input);
 
             Element e;

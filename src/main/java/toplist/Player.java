@@ -16,6 +16,8 @@ public class Player {
 
     /**
      * Létrehozza a játékos objektumot.
+     * Ha a paraméterül kapott {@code username} üres, akkor a
+     * {@code System.getProperty("user.name")} értékkel jön létre a {@link Player}.
      *
      * @param username A játékos felhasználóneve.
      * @param points A játékos pontszáma.
