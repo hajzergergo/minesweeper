@@ -1,6 +1,6 @@
 /**
- * {@link view.MineSweeperPane} osztályt tartalmaző package.
+ * {@link view.MineSweeperPane} osztályt tartalmazó package.
  *
- * Az egyes mezők megjelenítésére szolgál.
+ * <p>Az egyes mezők megjelenítésére szolgál.</p>
  */
 package view;
